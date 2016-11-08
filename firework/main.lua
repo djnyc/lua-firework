@@ -36,14 +36,15 @@ function love.update( dt )
 	part_list[ len + 1 ] = part
 
 
-	for index , part in pairs( part_list ) do
+	for i = len , 1 , -1 do
+		part = part_list[ i ]
 		part.x = part.x + part.vx * dt
 		part.y = part.y + part.vy * dt
 
 		part.vy = part.vy + g * dt
 
-		if part.y > 600 then
-			table.remove( part_list , index )
+		if part.y > 550 then
+			table.remove( part_list , i )
 		end
 	end
 end
@@ -53,7 +54,7 @@ function love.draw()
 		col = part.color
 
 		love.graphics.setColor( col.r , col.g , col.b , col.a )
-		love.graphics.ellipse( "fill" , part.x , part.y , 4 , 4 )
+		love.graphics.circle( "fill" , part.x , part.y , 4 )
 	end
 end
 
